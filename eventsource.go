@@ -188,9 +188,9 @@ func New(settings *Settings, customHeadersFunc func(*http.Request) [][]byte) Eve
 
 	es := new(eventSource)
 	es.customHeadersFunc = customHeadersFunc
-	es.sink = make(chan message, 1)
+	es.sink = make(chan message)
 	es.close = make(chan bool)
-	es.staled = make(chan *consumer, 1)
+	es.staled = make(chan *consumer)
 	es.add = make(chan *consumer)
 	es.consumers = list.New()
 	es.timeout = settings.Timeout
